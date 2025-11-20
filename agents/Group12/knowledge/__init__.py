@@ -1,0 +1,1 @@
+# Knowledge bases for Group12 Hex AI
