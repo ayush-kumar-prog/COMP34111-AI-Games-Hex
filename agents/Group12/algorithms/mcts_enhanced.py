@@ -87,9 +87,11 @@ class EnhancedMCTS:
         if len(root.untried_moves) == 1:
             return root.untried_moves[0]
 
-        # Run simulations until time limit
+        # Run simulations until time limit or iteration limit
         iterations = 0
-        while time() - start_time < time_limit:
+        MAX_ITERATIONS = 200  # Prevent runaway computation
+
+        while time() - start_time < time_limit and iterations < MAX_ITERATIONS:
             iterations += 1
 
             # Selection
@@ -112,6 +114,12 @@ class EnhancedMCTS:
 
             # Backpropagation
             self._backpropagate(node, result)
+
+            # Early termination if we have a clear best move
+            if iterations > 50 and iterations % 25 == 0 and root.children:
+                best_child = max(root.children, key=lambda c: c.visits)
+                if best_child.visits > root.visits * 0.7:  # One move has 70%+ visits
+                    break
 
         # Select best move
         best_move = self._select_best_move(root)
@@ -278,14 +286,19 @@ class EnhancedMCTS:
         current_colour = node.colour
         moves_played = []
 
-        # Run simulation
-        max_moves = 200  # Safety limit
+        # Run simulation with shorter depth for speed
+        max_moves = 50  # Reduced from 200 for performance
         move_count = 0
 
-        while not sim_board.has_ended(Colour.RED) and not sim_board.has_ended(Colour.BLUE):
+        while move_count < max_moves:
+            # Check for game end every 5 moves (not every move - too expensive)
+            if move_count % 5 == 0:
+                if sim_board.has_ended(Colour.RED) or sim_board.has_ended(Colour.BLUE):
+                    break
+
             move_count += 1
-            if move_count > max_moves:
-                # Evaluate position if simulation takes too long
+            if move_count >= max_moves:
+                # Evaluate position if simulation reaches limit
                 if self.evaluator:
                     score = self.evaluator.evaluate(sim_board, self.colour)
                     return (score + 1) / 2, moves_played  # Convert to [0, 1]
@@ -340,7 +353,7 @@ class EnhancedMCTS:
                     score = board.size - edge_dist
                     scored_moves.append((score, move))
 
-            scored_moves.sort(reverse=True)
+            scored_moves.sort(key=lambda x: x[0], reverse=True)
             # Select from top moves
             top_moves = [m for s, m in scored_moves[:5]]
             return random.choice(top_moves)
@@ -411,9 +424,13 @@ class EnhancedMCTS:
 
     def _get_legal_moves(self, board: Board) -> List[Move]:
         """Get all legal moves for current position."""
+        # Fast path: cache and reuse for performance
         moves = []
-        for i in range(board.size):
-            for j in range(board.size):
-                if board.tiles[i][j].colour is None:
+        tiles = board.tiles  # Cache attribute access
+        size = board.size
+        for i in range(size):
+            row = tiles[i]  # Cache row access
+            for j in range(size):
+                if row[j].colour is None:
                     moves.append(Move(i, j))
         return moves

@@ -158,17 +158,22 @@ class Group12Agent(AgentBase):
             # Fallback to quick evaluation
             return self._quick_heuristic_move(board)
 
-        # Endgame phase: Could use proof number search (not implemented yet)
-        # For now, use enhanced MCTS with more iterations
+        # Endgame phase: Use more time for critical positions
         if empty_cells < self.ENDGAME_EMPTY_CELLS:
-            time_limit = min(30 * 10**9, time_remaining * 0.3)  # Up to 30 seconds
+            # Conservative: max 5 seconds, or 10% of remaining time
+            time_limit = min(5 * 10**9, int(time_remaining * 0.1))
             return self.mcts.search(board, time_limit, endgame_mode=True)
 
-        # Middle game: Enhanced MCTS with virtual connections
-        # Allocate time based on position complexity
+        # Middle game: Conservative time allocation with safety margin
+        # Target: Use ~1% of remaining time per move to ensure no timeout
         position_temperature = self._compute_temperature(board)
-        base_time = time_remaining / (empty_cells + 10)
-        allocated_time = base_time * (1 + position_temperature)
+
+        # Much more conservative allocation
+        base_time = time_remaining / (empty_cells + 20)  # Increased divisor
+        allocated_time = int(base_time * (0.5 + position_temperature * 0.3))  # Reduced multiplier
+
+        # Hard cap at 2 seconds per move for safety
+        allocated_time = min(allocated_time, 2 * 10**9)
 
         return self.mcts.search(board, allocated_time)
 

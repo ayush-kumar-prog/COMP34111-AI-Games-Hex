@@ -3,7 +3,7 @@ Position evaluation functions including the revolutionary electrical resistance 
 """
 
 import numpy as np
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import spsolve
 import math
