@@ -1,0 +1,47 @@
+FROM nvidia/cuda:12.3.0-runtime-ubuntu22.04
+
+ENV HOME="/home/hex"
+ARG UID
+RUN useradd -u $UID --create-home hex
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    apt-get update && \
+    apt-get install -y tzdata && \
+    dpkg-reconfigure -f noninteractive tzdata
+
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3-pip \
+    python3.10-dev \
+    git \
+    curl \
+    wget \
+    default-jre && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Set Python 3.10 as default
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+
+# Install pip
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3
+
+# Install requirements
+RUN python3 -m pip install --upgrade pip setuptools wheel
+
+# Install PyTorch with CUDA support
+RUN python3 -m pip install --timeout=1000 torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+
+# Install TensorFlow with CUDA support (optional, for flexibility)
+RUN python3 -m pip install tensorflow[and-cuda]==2.19.0
+
+# Install other ML/scientific dependencies
+RUN python3 -m pip install numpy pandas scikit-learn scipy
+
+# Install training utilities
+RUN python3 -m pip install tensorboard tqdm h5py
+
+WORKDIR /home/hex
+
+# Verify GPU access on container start
+CMD ["/bin/bash", "-c", "nvidia-smi && python3 -c 'import torch; print(f\"PyTorch CUDA available: {torch.cuda.is_available()}\"); print(f\"CUDA device: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"None\"}\")'"]
