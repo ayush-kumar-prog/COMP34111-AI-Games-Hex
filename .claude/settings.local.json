@@ -4,7 +4,14 @@
       "Bash(tree:*)",
       "Bash(python3:*)",
       "Bash(cat:*)",
-      "Bash(system_profiler:*)"
+      "Bash(system_profiler:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:www.lamsade.dauphine.fr)",
+      "Bash(expect -c '\nset timeout 120\nspawn ssh r36859ak@csf3.itservices.manchester.ac.uk\nexpect \"\"\"\"Password:\"\"\"\"\nsend \"\"\"\"Ayushkumar040612!\\r\"\"\"\"\nexpect \"\"\"\"Duo\"\"\"\"\nsend \"\"\"\"1\\r\"\"\"\"\nexpect -re {\\$ $}\nsleep 1\nsend \"\"\"\"echo \\\"\"\"\"=== Worker CPU Usage ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"ssh node1214 \\\"\"\"\"ps aux | grep r36859ak | grep python | grep -v grep | wc -l\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"ssh node1214 \\\"\"\"\"ps aux | grep r36859ak | grep python | grep -v grep | tail -3\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"\\n=== Memory Usage ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"ssh node1214 \\\"\"\"\"ps aux | grep r36859ak | grep python | grep -v grep | awk ''''{sum+=\\$6} END {print sum/1024\\\"\"\"\" MB total memory\\\"\"\"\"}''''\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"\\n=== Check for partial data ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"cd ~/scratch/COMP34111-AI-Games-Hex && ls -lh data/ 2>&1\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"exit\\r\"\"\"\"\nexpect eof\n')",
+      "Bash(expect -c '\nset timeout 120\nspawn ssh r36859ak@csf3.itservices.manchester.ac.uk\nexpect \"\"\"\"Password:\"\"\"\"\nsend \"\"\"\"Ayushkumar040612!\\r\"\"\"\"\nexpect \"\"\"\"Duo\"\"\"\"\nsend \"\"\"\"1\\r\"\"\"\"\nexpect -re {\\$ $}\nsleep 1\nsend \"\"\"\"cd ~/scratch/COMP34111-AI-Games-Hex\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"=== Job Status ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"squeue -j 9200449\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"\\n=== Job History ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"sacct -j 9200449 --format=JobID,JobName,State,ExitCode,Elapsed,MaxRSS\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"\\n=== Output File ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"ls -lh data/expert_games_v5.npz 2>&1\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"echo \\\"\"\"\"\\n=== Latest Output ===\\\"\"\"\"\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"tail -40 /net/scratch/r36859ak/COMP34111-AI-Games-Hex/v5_data_gen_9200449.out\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"exit\\r\"\"\"\"\nexpect eof\n')",
+      "Bash(expect -c '\nset timeout 120\nspawn ssh r36859ak@csf3.itservices.manchester.ac.uk\nexpect \"\"\"\"Password:\"\"\"\"\nsend \"\"\"\"Ayushkumar040612!\\r\"\"\"\"\nexpect \"\"\"\"Duo\"\"\"\"\nsend \"\"\"\"1\\r\"\"\"\"\nexpect -re {\\$ $}\nsleep 1\nsend \"\"\"\"scontrol update jobid=9200449 TimeLimit=24:00:00\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"squeue -j 9200449\\r\"\"\"\"\nexpect -re {\\$ $}\nsend \"\"\"\"exit\\r\"\"\"\"\nexpect eof\n')"
     ],
     "deny": [],
     "ask": []

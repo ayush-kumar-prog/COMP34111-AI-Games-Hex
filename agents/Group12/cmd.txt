@@ -1,1 +1,1 @@
-agents.Group12.Group12Agent Group12Agent
+agents.Group12.Group12Agent_tournament Group12Agent

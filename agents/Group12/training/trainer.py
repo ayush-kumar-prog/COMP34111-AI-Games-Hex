@@ -6,8 +6,15 @@ Implements AlphaZero-style training with policy and value losses.
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.tensorboard import SummaryWriter
 import numpy as np
+
+# Optional TensorBoard support
+try:
+    from torch.utils.tensorboard import SummaryWriter
+    HAS_TENSORBOARD = True
+except ImportError:
+    HAS_TENSORBOARD = False
+    SummaryWriter = None
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List
@@ -27,6 +34,7 @@ class HexTrainer:
     def __init__(self, network: HexNeuralNetwork,
                  learning_rate: float = 0.001,
                  weight_decay: float = 1e-4,
+                 label_smoothing: float = 0.1,
                  device: str = 'cuda'):
         """
         Initialize trainer.
@@ -34,11 +42,13 @@ class HexTrainer:
         Args:
             network: Neural network to train
             learning_rate: Initial learning rate
-            weight_decay: L2 regularization
+            weight_decay: L2 regularization (prevents overfitting)
+            label_smoothing: Smoothing factor for policy targets (prevents overconfidence)
             device: 'cuda' or 'cpu'
         """
         self.network = network
         self.device = device
+        self.label_smoothing = label_smoothing
         self.network.to(device)
 
         # Optimizer
@@ -94,9 +104,15 @@ class HexTrainer:
             # Forward pass
             policy_logits, value_pred = self.network(states)
 
-            # Policy loss: Cross-entropy between predicted and target
-            # policy_logits are already log-probabilities
-            policy_loss = -torch.mean(torch.sum(policy_targets * policy_logits, dim=1))
+            # Policy loss: Cross-entropy with label smoothing
+            # Label smoothing prevents overconfident predictions and improves generalization
+            # Smoothed target = (1 - smoothing) * target + smoothing / num_classes
+            num_actions = policy_targets.shape[1]  # 121 for 11x11 board
+            smoothed_targets = (1 - self.label_smoothing) * policy_targets + \
+                               self.label_smoothing / num_actions
+
+            # Cross-entropy: -sum(smoothed_target * log_prob)
+            policy_loss = -torch.mean(torch.sum(smoothed_targets * policy_logits, dim=1))
 
             # Value loss: MSE between predicted and target
             value_loss = nn.functional.mse_loss(value_pred.squeeze(), value_targets.squeeze())
@@ -104,9 +120,13 @@ class HexTrainer:
             # Combined loss
             loss = policy_loss + value_loss
 
-            # Backward pass
+            # Backward pass with gradient clipping
             self.optimizer.zero_grad()
             loss.backward()
+
+            # Clip gradients to prevent exploding gradients
+            torch.nn.utils.clip_grad_norm_(self.network.parameters(), max_norm=1.0)
+
             self.optimizer.step()
 
             # Statistics
@@ -177,7 +197,11 @@ class HexTrainer:
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         run_name = f"hex_training_{timestamp}"
-        self.writer = SummaryWriter(log_dir=f"{log_dir}/{run_name}")
+        if HAS_TENSORBOARD:
+            self.writer = SummaryWriter(log_dir=f"{log_dir}/{run_name}")
+        else:
+            self.writer = None
+            print("Note: TensorBoard not available, skipping logging")
 
         # Create self-play manager
         encoder = BoardEncoder()

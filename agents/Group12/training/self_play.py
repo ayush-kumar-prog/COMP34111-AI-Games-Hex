@@ -60,16 +60,36 @@ class SelfPlayWorker:
         # Move network to device
         self.network.to(device)
 
+    def get_temperature(self, move_number: int) -> float:
+        """
+        Get temperature for move selection based on game phase.
+
+        CRITICAL: Never drop below 0.5 to maintain exploration diversity.
+        This prevents the policy entropy from collapsing to zero.
+
+        Args:
+            move_number: Current move number in the game
+
+        Returns:
+            Temperature value (higher = more exploration)
+        """
+        if move_number < 15:
+            return 1.5  # High exploration in opening
+        elif move_number < 30:
+            return 1.0  # Moderate exploration in early midgame
+        elif move_number < 50:
+            return 0.7  # Reduced but still meaningful exploration
+        else:
+            return 0.5  # Minimum exploration (NEVER go below this!)
+
     def generate_game(self, temperature: float = 1.0,
                      temperature_threshold: int = 30) -> List[TrainingExample]:
         """
         Generate one self-play game.
 
         Args:
-            temperature: Temperature for move selection
-                        (higher = more exploration)
-            temperature_threshold: Use temperature for first N moves,
-                                  then argmax
+            temperature: Base temperature for move selection (now dynamically adjusted)
+            temperature_threshold: Deprecated - using dynamic temperature instead
 
         Returns:
             List of training examples from the game
@@ -85,9 +105,9 @@ class SelfPlayWorker:
             mcts = NeuralMCTS(self.network, self.encoder,
                             current_colour, self.device)
 
-            # Run MCTS search
+            # Run MCTS search - always add noise for exploration
             move, policy_target = mcts.search(board, self.num_simulations,
-                                            add_noise=(move_number < temperature_threshold))
+                                            add_noise=(move_number < 40))
 
             # Save training example (value will be filled in later)
             state = self.encoder.encode(board, current_colour, device='cpu')
@@ -99,21 +119,36 @@ class SelfPlayWorker:
             )
             examples.append(example)
 
-            # Sample move with temperature
-            if move_number < temperature_threshold and temperature > 0:
-                # Apply temperature to policy
-                policy_temp = policy_target ** (1.0 / temperature)
-                policy_temp /= policy_temp.sum()
+            # Get dynamic temperature based on game phase
+            current_temp = self.get_temperature(move_number)
 
-                # Sample move
-                flat_idx = np.random.choice(len(policy_temp), p=policy_temp)
-                x, y = flat_idx // 11, flat_idx % 11
+            # ALWAYS sample with temperature (never pure argmax!)
+            # Apply temperature to policy
+            policy_temp = policy_target ** (1.0 / current_temp)
 
-                # Verify it's legal
-                if board.tiles[x][y].colour is None:
-                    move = Move(x, y)
-                # else: use MCTS best move (already set)
-            # else: use argmax (MCTS best move)
+            # Safety check: handle zero/NaN sums (untrained networks)
+            policy_sum = policy_temp.sum()
+            if policy_sum > 1e-10 and not np.isnan(policy_sum):
+                policy_temp /= policy_sum
+            else:
+                # Fallback to uniform distribution over legal moves
+                legal_moves = []
+                for i in range(11):
+                    for j in range(11):
+                        if board.tiles[i][j].colour is None:
+                            legal_moves.append(i * 11 + j)
+                policy_temp = np.zeros(121)
+                for idx in legal_moves:
+                    policy_temp[idx] = 1.0 / len(legal_moves)
+
+            # Sample move from distribution
+            flat_idx = np.random.choice(len(policy_temp), p=policy_temp)
+            x, y = flat_idx // 11, flat_idx % 11
+
+            # Verify it's legal
+            if board.tiles[x][y].colour is None:
+                move = Move(x, y)
+            # else: use MCTS best move (already set)
 
             # Make move
             board.set_tile_colour(move.x, move.y, current_colour)

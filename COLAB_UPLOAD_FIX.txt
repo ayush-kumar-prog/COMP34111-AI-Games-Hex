@@ -1,0 +1,40 @@
+# FIXED UPLOAD CELL - Replace the upload cell in Colab with this:
+
+# Upload your COMP34111-AI-Games-Hex folder as a ZIP file
+from google.colab import files
+import zipfile
+import os
+
+print("Please upload your COMP34111-AI-Games-Hex.zip file:")
+uploaded = files.upload()
+
+# Extract
+for filename in uploaded.keys():
+    print(f"Extracting {filename}...")
+    with zipfile.ZipFile(filename, 'r') as zip_ref:
+        zip_ref.extractall('/content/')
+    print("✅ Extraction complete!")
+
+# Check if files are in /content/ directly or in a subdirectory
+if os.path.exists('/content/Hex.py'):
+    # Files extracted directly to /content/
+    project_dir = '/content'
+    print(f"Project directory: {project_dir} (files extracted directly)")
+    os.chdir(project_dir)
+    print(f"Changed to: {os.getcwd()}")
+else:
+    # Files in a subdirectory
+    dirs = [d for d in os.listdir('/content/')
+            if os.path.isdir(f'/content/{d}') and ('COMP34111' in d or 'Hex' in d or 'AI' in d)]
+    if dirs:
+        project_dir = f"/content/{dirs[0]}"
+        print(f"Project directory: {project_dir}")
+        os.chdir(project_dir)
+        print(f"Changed to: {os.getcwd()}")
+    else:
+        print("⚠️  Could not find project directory. Staying in /content/")
+        project_dir = '/content'
+
+# Verify we're in the right place
+print(f"\n✅ Working directory: {os.getcwd()}")
+print(f"Files present: {', '.join(os.listdir('.')[:10])}...")
