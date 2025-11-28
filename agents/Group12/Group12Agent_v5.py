@@ -439,13 +439,19 @@ class Group12Agent(AgentBase):
 
     def _load_network(self) -> HexNeuralNetworkV2:
         """Load trained network."""
-        # Try multiple paths
+        # Try multiple paths - includes both expected and uploaded model names
         possible_paths = [
+            # Uploaded model files (from git)
+            Path('models/v5_supervised_final.pth'),
+            Path('models/hex_model_best.pth'),
+            # Relative to agent location
             Path(__file__).parent / 'models' / 'hex_v5_best.pth',
             Path(__file__).parent / 'models' / 'hex_v5_expert_final.pth',
             Path(__file__).parent / 'models' / 'hex_v5_supervised_best.pth',
+            # Other common locations
             Path('agents/Group12/models/hex_v5_best.pth'),
             Path('models/v5_best.pth'),
+            Path('models/v5_supervised_best.pth'),
         ]
 
         network = HexNeuralNetworkV2(
