@@ -154,11 +154,10 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Large model files and training data
-*.pth
-*.npz
-models/
+# Training data (too large, generated on CSF)
 data/
+
+# Zip archives
 *.zip
 
 # Node modules
