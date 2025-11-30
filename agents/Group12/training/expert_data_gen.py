@@ -526,21 +526,27 @@ def generate_single_game(args: Tuple[int, int, int]) -> List[TrainingExample]:
 
 def generate_games_parallel(num_games: int, num_workers: int,
                            mcts_iterations: int = 500,
-                           checkpoint_interval: int = 1000) -> List[TrainingExample]:
+                           checkpoint_interval: int = 1000,
+                           output_path: str = None) -> List[TrainingExample]:
     """
     Generate games in parallel using multiprocessing.
+
+    IMPORTANT: Saves checkpoints every checkpoint_interval games to avoid
+    losing work if the job crashes or times out.
 
     Args:
         num_games: Total number of games to generate
         num_workers: Number of parallel workers
         mcts_iterations: MCTS iterations per move
         checkpoint_interval: Save checkpoint every N games
+        output_path: Output path (used for checkpoint naming)
 
     Returns:
         List of all training examples
     """
     print(f"Generating {num_games} expert games with {num_workers} workers...")
     print(f"MCTS iterations: {mcts_iterations}")
+    print(f"Checkpointing every {checkpoint_interval} games")
 
     all_examples = []
     base_seed = int(time.time())
@@ -550,6 +556,15 @@ def generate_games_parallel(num_games: int, num_workers: int,
 
     start_time = time.time()
     games_done = 0
+    last_checkpoint = 0
+
+    # Checkpoint path
+    if output_path:
+        checkpoint_dir = os.path.dirname(output_path) or '.'
+        checkpoint_base = os.path.splitext(os.path.basename(output_path))[0]
+        checkpoint_path = os.path.join(checkpoint_dir, f"{checkpoint_base}_checkpoint.npz")
+    else:
+        checkpoint_path = "data/checkpoint.npz"
 
     # Use multiprocessing pool
     with mp.Pool(processes=num_workers) as pool:
@@ -558,13 +573,34 @@ def generate_games_parallel(num_games: int, num_workers: int,
             all_examples.extend(examples)
             games_done += 1
 
-            # Progress report
+            # Progress report every 100 games
             if games_done % 100 == 0 or games_done == num_games:
                 elapsed = time.time() - start_time
                 rate = games_done / elapsed if elapsed > 0 else 0
                 eta = (num_games - games_done) / rate if rate > 0 else 0
                 print(f"  Progress: {games_done}/{num_games} games "
                       f"({rate:.2f} games/s, ETA: {eta:.0f}s)")
+
+            # CHECKPOINT: Save every checkpoint_interval games
+            if games_done - last_checkpoint >= checkpoint_interval:
+                print(f"  [CHECKPOINT] Saving {len(all_examples)} examples at game {games_done}...")
+                try:
+                    # Save checkpoint
+                    states = np.array([ex.state for ex in all_examples])
+                    policies = np.array([ex.policy for ex in all_examples])
+                    values = np.array([ex.value for ex in all_examples])
+                    np.savez_compressed(
+                        checkpoint_path,
+                        states=states,
+                        policies=policies,
+                        values=values,
+                        games_done=games_done
+                    )
+                    ckpt_size = os.path.getsize(checkpoint_path) / (1024 * 1024)
+                    print(f"  [CHECKPOINT] Saved to {checkpoint_path} ({ckpt_size:.1f} MB)")
+                    last_checkpoint = games_done
+                except Exception as e:
+                    print(f"  [CHECKPOINT] Warning: Failed to save checkpoint: {e}")
 
     elapsed = time.time() - start_time
     print(f"\nGenerated {len(all_examples)} examples from {num_games} games "
@@ -645,7 +681,8 @@ def main():
         num_games=args.num_games,
         num_workers=args.workers,
         mcts_iterations=args.mcts_iters,
-        checkpoint_interval=args.checkpoint_interval
+        checkpoint_interval=args.checkpoint_interval,
+        output_path=args.output
     )
 
     # Save
