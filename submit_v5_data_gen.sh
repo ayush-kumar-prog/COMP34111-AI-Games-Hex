@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=32G
-#SBATCH --time=12:00:00
+#SBATCH --time=7-00:00:00
 #SBATCH --output=v5_data_gen_%j.out
 #SBATCH --error=v5_data_gen_%j.err
 
