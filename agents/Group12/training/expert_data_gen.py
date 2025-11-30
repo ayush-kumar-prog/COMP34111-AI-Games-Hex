@@ -526,7 +526,7 @@ def generate_single_game(args: Tuple[int, int, int]) -> List[TrainingExample]:
 
 def generate_games_parallel(num_games: int, num_workers: int,
                            mcts_iterations: int = 500,
-                           checkpoint_interval: int = 1000,
+                           checkpoint_interval: int = 100,
                            output_path: str = None) -> List[TrainingExample]:
     """
     Generate games in parallel using multiprocessing.
@@ -654,7 +654,7 @@ def main():
                        help='MCTS iterations per move')
     parser.add_argument('--output', type=str, default='data/expert_games_v5.npz',
                        help='Output file path')
-    parser.add_argument('--checkpoint-interval', type=int, default=1000,
+    parser.add_argument('--checkpoint-interval', type=int, default=100,
                        help='Save checkpoint every N games')
 
     args = parser.parse_args()
