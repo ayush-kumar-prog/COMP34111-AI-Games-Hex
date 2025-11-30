@@ -27,6 +27,13 @@ import pickle
 import time
 import multiprocessing as mp
 from pathlib import Path
+
+# CRITICAL: Use 'spawn' instead of 'fork' to avoid deadlocks on Linux
+# fork() can cause issues with certain libraries and shared state
+try:
+    mp.set_start_method('spawn', force=True)
+except RuntimeError:
+    pass  # Already set
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict
 from time import perf_counter_ns
