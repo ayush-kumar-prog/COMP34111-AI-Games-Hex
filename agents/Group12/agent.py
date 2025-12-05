@@ -2,16 +2,11 @@ import math
 import random
 import time
 from copy import deepcopy
-import sys
-import os
 
-# Add src to path if needed
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
-
-from AgentBase import AgentBase
-from Board import Board
-from Colour import Colour
-from Move import Move
+from src.AgentBase import AgentBase
+from src.Board import Board
+from src.Colour import Colour
+from src.Move import Move
 
 class MCTSNode:
     """Node in the Monte Carlo Tree Search"""
@@ -30,7 +25,7 @@ class MCTSNode:
         moves = []
         for x in range(11):
             for y in range(11):
-                if self.board.tiles[x][y].colour == Colour.EMPTY:
+                if self.board.tiles[x][y].colour is None:
                     moves.append((x, y))
         random.shuffle(moves)  # Randomize to avoid bias
         return moves
@@ -82,7 +77,7 @@ class MCTSNode:
             legal_moves = []
             for x in range(11):
                 for y in range(11):
-                    if current_board.tiles[x][y].colour == Colour.EMPTY:
+                    if current_board.tiles[x][y].colour is None:
                         legal_moves.append((x, y))
             
             if not legal_moves:
