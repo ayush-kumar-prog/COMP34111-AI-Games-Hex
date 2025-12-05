@@ -1,1 +1,3 @@
-agents.Group12.Group12Agent_tournament Group12Agent
+agents.Group12.MyHexAgent MyHexAgent
+agents.Group12.SimpleAgent SimpleAgent
+agents.Group12.MctsRaveAgent MctsRaveAgent
