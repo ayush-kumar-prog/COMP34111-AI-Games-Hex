@@ -1,9 +1,13 @@
-import sys
 import math
 import random
 import time
 from copy import deepcopy
-sys.path.append('src')
+import sys
+import os
+
+# Add src to path if needed
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+
 from AgentBase import AgentBase
 from Board import Board
 from Colour import Colour
