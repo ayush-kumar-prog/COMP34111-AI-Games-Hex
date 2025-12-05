@@ -1,1 +1,5 @@
+agents.Group12.HexMastUltra2 HexMastUltra2
 agents.Group12.BasicMCTSAgent BasicMCTSAgent
+agents.Group12.HexMastUltra HexMastUltra
+agents.Group12.HexMastHybrid HexMastHybrid
+agents.Group12.HexMastFast HexMastFast

@@ -15,58 +15,35 @@ Coord = Tuple[int, int]
 class GameState:
     """
     Internal game state for MCTS simulations.
-    Uses its own board representation so we don't depend on Board's internals.
-    Board cells hold Colour.EMPTY / Colour.RED / Colour.BLUE.
+    Board cells hold None / Colour.RED / Colour.BLUE.
     """
 
-    def __init__(self, size: int, board: Optional[List[List[Colour]]] = None,
+    def __init__(self, size: int, board: Optional[List[List[Optional[Colour]]]] = None,
                  next_player: Colour = Colour.RED):
         self.size = size
         if board is None:
-            self.board = [[Colour.EMPTY for _ in range(size)] for _ in range(size)]
+            self.board: List[List[Optional[Colour]]] = [[None for _ in range(size)] for _ in range(size)]
         else:
-            # Deep copy to be safe
             self.board = [row[:] for row in board]
 
         self.next_player = next_player
 
     @staticmethod
     def from_board_object(board: Board, my_colour: Colour) -> "GameState":
-        """
-        Convert the engine's Board object into our internal GameState.
-        Assumes:
-          - board.get_tiles() -> 2D list of Tile
-          - each Tile has x, y and some way to read its colour as Colour.*
-        YOU MUST ADAPT the marked section to match the actual Tile API,
-        using NaiveAgent.py as reference.
-        """
-        tiles_2d = board.get_tiles()
-        size = len(tiles_2d)
+        tiles_2d = board.tiles
+        size = board.size
 
-        internal_board: List[List[Colour]] = [
-            [Colour.EMPTY for _ in range(size)] for _ in range(size)
+        internal_board: List[List[Optional[Colour]]] = [
+            [None for _ in range(size)] for _ in range(size)
         ]
 
-        for row in tiles_2d:
-            for tile in row:
-                x = tile.x
-                y = tile.y
-
-                # ---- TODO: ADAPT TO BOARD/TILE API ----
-                # Example 1 (if Tile has attribute 'colour'):
+        for x in range(size):
+            for y in range(size):
+                tile = tiles_2d[x][y]
                 tile_colour = tile.colour
-
-                # Example 2 (if Tile has method 'get_colour()'):
-                # tile_colour = tile.get_colour()
-                # ----------------------------------------
-
                 internal_board[y][x] = tile_colour
 
-        # Figure out whose turn it is:
-        # Count stones and decide. Engine always calls make_move only when it's our turn.
-        # So we can simply set next_player = my_colour.
         next_player = my_colour
-
         return GameState(size=size, board=internal_board, next_player=next_player)
 
     def clone(self) -> "GameState":
@@ -76,30 +53,26 @@ class GameState:
         moves: List[Coord] = []
         for y in range(self.size):
             for x in range(self.size):
-                if self.board[y][x] == Colour.EMPTY:
+                if self.board[y][x] is None:
                     moves.append((x, y))
         return moves
 
     def play_move(self, move: Coord):
         x, y = move
-        assert self.board[y][x] == Colour.EMPTY, "Illegal move in GameState"
+        assert self.board[y][x] is None, "Illegal move in GameState"
         self.board[y][x] = self.next_player
-        # swap player
         self.next_player = Colour.RED if self.next_player == Colour.BLUE else Colour.BLUE
 
     def is_terminal(self) -> bool:
-        """Game is over if any player has won or board is full."""
         if self.has_won(Colour.RED) or self.has_won(Colour.BLUE):
             return True
-        # check full board
         for row in self.board:
             for c in row:
-                if c == Colour.EMPTY:
+                if c is None:
                     return False
         return True
 
     def winner(self) -> Optional[Colour]:
-        """Return winning colour, or None if no winner (draw/impossible in Hex but just in case)."""
         if self.has_won(Colour.RED):
             return Colour.RED
         if self.has_won(Colour.BLUE):
@@ -107,13 +80,6 @@ class GameState:
         return None
 
     def has_won(self, colour: Colour) -> bool:
-        """
-        Check connection:
-          - RED: connect top (y=0) to bottom (y=size-1)
-          - BLUE: connect left (x=0) to right (x=size-1)
-        Uses DFS on the hex graph with neighbours:
-           (x-1,y), (x+1,y), (x,y-1), (x,y+1), (x-1,y+1), (x+1,y-1)
-        """
         n = self.size
         visited = set()
         stack = []
@@ -132,7 +98,6 @@ class GameState:
                     yield nx, ny
 
         if colour == Colour.RED:
-            # start from top edge, look for bottom
             for x in range(n):
                 if self.board[0][x] == colour:
                     stack.append((x, 0))
@@ -148,7 +113,7 @@ class GameState:
                         visited.add((nx, ny))
                         stack.append((nx, ny))
 
-        else:  # BLUE: left-right
+        else:
             for y in range(n):
                 if self.board[y][0] == colour:
                     stack.append((0, y))
@@ -205,7 +170,7 @@ class MCTSNode:
         self.wins += result
 
 
-class BasicMCTS(AgentBase):
+class BasicMCTSAgent(AgentBase):
     """
     Slightly improved MCTS agent:
       - Plain UCT
@@ -224,7 +189,7 @@ class BasicMCTS(AgentBase):
 
     # ------------- Pie rule handling -------------
 
-    def _should_swap(self, board: Board, opponent_move: Move) -> bool:
+    def _should_swap(self, board: Board, opponent_move: Optional[Move]) -> bool:
         """
         Simple heuristic: if we're the second player and opponent's first
         move is very central, swap.
@@ -244,8 +209,8 @@ class BasicMCTS(AgentBase):
 
         x, y = opponent_move.x, opponent_move.y
 
-        tiles = board.get_tiles()
-        size = len(tiles)
+        tiles = board.tiles
+        size = board.size
         cx = cy = size // 2
 
         # Manhattan distance from centre
@@ -255,7 +220,7 @@ class BasicMCTS(AgentBase):
 
     # ------------- Core MCTS -------------
 
-    def make_move(self, board: Board, opponent_move: Optional[Move]) -> Move:
+    def make_move(self, turn: int, board: Board, opponent_move: Optional[Move]) -> Move:
         """
         Main entrypoint called by the engine.
         Must return a Move object.
