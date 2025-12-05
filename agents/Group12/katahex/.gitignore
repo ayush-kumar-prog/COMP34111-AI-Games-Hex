@@ -1,0 +1,17 @@
+# KataHex files to ignore
+# These are large binaries that should be built/downloaded on target system
+
+# Compiled binary
+katahex
+
+# Model file (download from GitHub releases)
+*.bin.gz
+
+# Build artifacts
+katahex-src/
+build/
+
+# Keep config and setup scripts
+!config.cfg
+!setup_katahex.sh
+!.gitignore
