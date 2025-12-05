@@ -171,13 +171,13 @@ class HexHexAgent(AgentBase):
         # Read config from checkpoint
         config = checkpoint.get('config', None)
         if config is not None:
-            # Config is a ConfigParser object
-            board_size = config.getint('DEFAULT', 'board_size')
-            layers = config.getint('DEFAULT', 'layers')
-            intermediate_channels = config.getint('DEFAULT', 'intermediate_channels')
-            reach = config.getint('DEFAULT', 'reach')
-            switch_model = config.getboolean('DEFAULT', 'switch_model')
-            rotation_model = config.getboolean('DEFAULT', 'rotation_model')
+            # Config is a ConfigParser.SectionProxy object
+            board_size = int(config['board_size'])
+            layers = int(config['layers'])
+            intermediate_channels = int(config['intermediate_channels'])
+            reach = int(config['reach'])
+            switch_model = config['switch_model'].lower() == 'true'
+            rotation_model = config['rotation_model'].lower() == 'true'
             self.board_size = board_size
         else:
             # Fallback to defaults if config not in checkpoint
