@@ -117,13 +117,21 @@ class KataHexAgent(AgentBase):
                 "-model", KATAHEX_MODEL
             ]
 
+            # Set up environment with GCC library path for CSF3 compatibility
+            env = os.environ.copy()
+            gcc_lib_path = "/opt/apps/compilers/gcc/12.2.0/lib64"
+            if os.path.exists(gcc_lib_path):
+                current_ld = env.get("LD_LIBRARY_PATH", "")
+                env["LD_LIBRARY_PATH"] = f"{gcc_lib_path}:{current_ld}" if current_ld else gcc_lib_path
+
             self.process = subprocess.Popen(
                 cmd,
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
-                bufsize=1  # Line buffered
+                bufsize=1,  # Line buffered
+                env=env
             )
 
             # Initialize board
