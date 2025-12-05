@@ -1,13 +1,12 @@
-import sys
 import math
 import random
 import time
 from copy import deepcopy
-sys.path.append('src')
-from AgentBase import AgentBase
-from Board import Board
-from Colour import Colour
-from Move import Move
+
+from src.AgentBase import AgentBase
+from src.Board import Board
+from src.Colour import Colour
+from src.Move import Move
 
 class MCTSNode:
     """Node in the Monte Carlo Tree Search"""
