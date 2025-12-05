@@ -140,8 +140,8 @@ class RotationWrapperModel(nn.Module):
         # Evaluate both original and 180-rotated board
         x_flip = torch.flip(x, [2, 3])
         y_flip = self.internal_model(x_flip)
-        y = torch.flip(y_flip.view(-1, self.board_size, self.board_size), [1, 2])
-        y = y.view(-1, self.board_size ** 2)
+        # Flip the 1D output to match rotated coordinates
+        y = torch.flip(y_flip, [1])
         return (self.internal_model(x) + y) / 2
 
 
@@ -171,13 +171,32 @@ class HexHexAgent(AgentBase):
         # Read config from checkpoint
         config = checkpoint.get('config', None)
         if config is not None:
-            # Config is a ConfigParser.SectionProxy object
-            board_size = int(config['board_size'])
-            layers = int(config['layers'])
-            intermediate_channels = int(config['intermediate_channels'])
-            reach = int(config['reach'])
-            switch_model = config['switch_model'].lower() == 'true'
-            rotation_model = config['rotation_model'].lower() == 'true'
+            # Config is a ConfigParser object - try different access methods
+            try:
+                # Method 1: ConfigParser with section
+                board_size = config.getint('DEFAULT', 'board_size')
+                layers = config.getint('DEFAULT', 'layers')
+                intermediate_channels = config.getint('DEFAULT', 'intermediate_channels')
+                reach = config.getint('DEFAULT', 'reach')
+                switch_model = config.getboolean('DEFAULT', 'switch_model')
+                rotation_model = config.getboolean('DEFAULT', 'rotation_model')
+            except (TypeError, KeyError):
+                try:
+                    # Method 2: ConfigParser without section (uses DEFAULT implicitly)
+                    board_size = config.getint('board_size')
+                    layers = config.getint('layers')
+                    intermediate_channels = config.getint('intermediate_channels')
+                    reach = config.getint('reach')
+                    switch_model = config.getboolean('switch_model')
+                    rotation_model = config.getboolean('rotation_model')
+                except (TypeError, KeyError, AttributeError):
+                    # Method 3: Dict-like access
+                    board_size = int(config.get('board_size', 11))
+                    layers = int(config.get('layers', 18))
+                    intermediate_channels = int(config.get('intermediate_channels', 64))
+                    reach = int(config.get('reach', 1))
+                    switch_model = str(config.get('switch_model', 'true')).lower() == 'true'
+                    rotation_model = str(config.get('rotation_model', 'true')).lower() == 'true'
             self.board_size = board_size
         else:
             # Fallback to defaults if config not in checkpoint
@@ -199,11 +218,8 @@ class HexHexAgent(AgentBase):
 
         # Apply wrappers based on config
         model = internal_model
-        if config is not None and not switch_model:
-            # NoSwitchWrapper disables swap - not needed for export mode
-            pass
 
-        if config is None or rotation_model:
+        if rotation_model:
             model = RotationWrapperModel(internal_model, export_mode=True)
 
         # Load weights
