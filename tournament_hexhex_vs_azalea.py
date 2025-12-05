@@ -36,14 +36,14 @@ def run_game(game_num: int) -> dict:
     output = result.stdout + result.stderr
     winner = None
 
-    # Look for winner in output
-    if "RED wins" in output or "Player 1 wins" in output:
+    # Look for winner in output - game uses player names Alice (P1) and Bob (P2)
+    if "Player Alice has won" in output or "winner,Alice" in output:
+        winner = p1_name  # Alice is always P1
+    elif "Player Bob has won" in output or "winner,Bob" in output:
+        winner = p2_name  # Bob is always P2
+    elif "RED wins" in output:
         winner = p1_name
-    elif "BLUE wins" in output or "Player 2 wins" in output:
-        winner = p2_name
-    elif "winner: Colour.RED" in output.lower():
-        winner = p1_name
-    elif "winner: Colour.BLUE" in output.lower():
+    elif "BLUE wins" in output:
         winner = p2_name
 
     return {
