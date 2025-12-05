@@ -23,12 +23,13 @@ print(f"Checkpoint keys: {checkpoint.keys()}")
 if "config" in checkpoint:
     config = checkpoint["config"]
     print(f"Config type: {type(config)}")
-    print(f"Board size: {config.getint('DEFAULT', 'board_size')}")
-    print(f"Layers: {config.getint('DEFAULT', 'layers')}")
-    print(f"Channels: {config.getint('DEFAULT', 'intermediate_channels')}")
-    print(f"Reach: {config.getint('DEFAULT', 'reach')}")
-    print(f"Switch model: {config.getboolean('DEFAULT', 'switch_model')}")
-    print(f"Rotation model: {config.getboolean('DEFAULT', 'rotation_model')}")
+    # SectionProxy uses direct access without section name
+    print(f"Board size: {config.getint('board_size')}")
+    print(f"Layers: {config.getint('layers')}")
+    print(f"Channels: {config.getint('intermediate_channels')}")
+    print(f"Reach: {config.getint('reach')}")
+    print(f"Switch model: {config.getboolean('switch_model')}")
+    print(f"Rotation model: {config.getboolean('rotation_model')}")
 else:
     print("WARNING: No config in checkpoint, using defaults")
 

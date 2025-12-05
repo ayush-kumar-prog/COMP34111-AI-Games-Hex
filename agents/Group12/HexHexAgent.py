@@ -171,32 +171,22 @@ class HexHexAgent(AgentBase):
         # Read config from checkpoint
         config = checkpoint.get('config', None)
         if config is not None:
-            # Config is a ConfigParser object - try different access methods
+            # Config is a SectionProxy object - use direct access without section name
             try:
-                # Method 1: ConfigParser with section
-                board_size = config.getint('DEFAULT', 'board_size')
-                layers = config.getint('DEFAULT', 'layers')
-                intermediate_channels = config.getint('DEFAULT', 'intermediate_channels')
-                reach = config.getint('DEFAULT', 'reach')
-                switch_model = config.getboolean('DEFAULT', 'switch_model')
-                rotation_model = config.getboolean('DEFAULT', 'rotation_model')
-            except (TypeError, KeyError):
-                try:
-                    # Method 2: ConfigParser without section (uses DEFAULT implicitly)
-                    board_size = config.getint('board_size')
-                    layers = config.getint('layers')
-                    intermediate_channels = config.getint('intermediate_channels')
-                    reach = config.getint('reach')
-                    switch_model = config.getboolean('switch_model')
-                    rotation_model = config.getboolean('rotation_model')
-                except (TypeError, KeyError, AttributeError):
-                    # Method 3: Dict-like access
-                    board_size = int(config.get('board_size', 11))
-                    layers = int(config.get('layers', 18))
-                    intermediate_channels = int(config.get('intermediate_channels', 64))
-                    reach = int(config.get('reach', 1))
-                    switch_model = str(config.get('switch_model', 'true')).lower() == 'true'
-                    rotation_model = str(config.get('rotation_model', 'true')).lower() == 'true'
+                board_size = config.getint('board_size')
+                layers = config.getint('layers')
+                intermediate_channels = config.getint('intermediate_channels')
+                reach = config.getint('reach')
+                switch_model = config.getboolean('switch_model')
+                rotation_model = config.getboolean('rotation_model')
+            except (TypeError, KeyError, AttributeError):
+                # Fallback: Dict-like access
+                board_size = int(config.get('board_size', 11))
+                layers = int(config.get('layers', 18))
+                intermediate_channels = int(config.get('intermediate_channels', 64))
+                reach = int(config.get('reach', 1))
+                switch_model = str(config.get('switch_model', 'true')).lower() == 'true'
+                rotation_model = str(config.get('rotation_model', 'true')).lower() == 'true'
             self.board_size = board_size
         else:
             # Fallback to defaults if config not in checkpoint
