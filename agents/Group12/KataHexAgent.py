@@ -158,6 +158,10 @@ class KataHexAgent(AgentBase):
             print(f"[KataHex] Process not running, cannot send: {cmd}")
             return ""
 
+        # Ensure lock exists
+        if self._lock is None:
+            self._lock = threading.Lock()
+
         with self._lock:
             try:
                 # Send command
@@ -342,9 +346,25 @@ class KataHexAgent(AgentBase):
                     return Move(i, j)
         return Move(0, 0)
 
+    def __getstate__(self):
+        """Handle pickling by excluding unpicklable objects."""
+        state = self.__dict__.copy()
+        # Remove unpicklable objects
+        state['_lock'] = None
+        state['process'] = None
+        return state
+
+    def __setstate__(self, state):
+        """Restore state after unpickling."""
+        self.__dict__.update(state)
+        # Recreate lock
+        self._lock = threading.Lock()
+        # Process will be None, engine needs to restart on first use
+        self._initialized = False
+
     def __del__(self):
         """Clean up subprocess on deletion."""
-        if self.process and self.process.poll() is None:
+        if hasattr(self, 'process') and self.process and self.process.poll() is None:
             try:
                 self._send_command("quit")
                 self.process.terminate()
