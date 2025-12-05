@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=sahil_vs_harshita
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
+#SBATCH --partition=gpuA
+#SBATCH -G 1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=16G
 #SBATCH --time=02:00:00
@@ -14,6 +14,9 @@ echo "Start time: $(date)"
 echo ""
 
 cd ~/scratch/COMP34111-AI-Games-Hex
+
+# Check GPU
+nvidia-smi || echo "No GPU detected"
 
 SUMMARY_FILE="tournament_summary_sahil_vs_harshita_${SLURM_JOB_ID}.txt"
 
@@ -38,10 +41,6 @@ GAME-BY-GAME RESULTS:
 ---------------------
 EOF
 
-# Build Docker image first
-echo "Building Docker image..."
-docker build --build-arg UID=$(id -u) -t hex . 2>&1 | tail -5
-
 SAHIL_WINS=0
 HARSHITA_WINS=0
 SAHIL_AS_RED_WINS=0
@@ -57,12 +56,12 @@ for i in {1..20}; do
         # Odd games: Sahil RED, Harshita BLUE
         MATCHUP="Sahil (RED) vs Harshita (BLUE)"
         echo "Game $i: $MATCHUP"
-        RESULT=$(timeout 600 docker run --cpus=8 --memory=8G --runtime=nvidia -v "$(pwd)":/home/hex --rm hex python3 /home/hex/Hex.py -p1 "agents.Group12.HexMastUltra2 HexMastUltra2" -p2 "agents.Group12.agent MCTSAgent" 2>&1)
+        RESULT=$(timeout 600 python3 Hex.py -p1 "agents.Group12.HexMastUltra2 HexMastUltra2" -p2 "agents.Group12.agent MCTSAgent" 2>&1)
     else
         # Even games: Harshita RED, Sahil BLUE
         MATCHUP="Harshita (RED) vs Sahil (BLUE)"
         echo "Game $i: $MATCHUP"
-        RESULT=$(timeout 600 docker run --cpus=8 --memory=8G --runtime=nvidia -v "$(pwd)":/home/hex --rm hex python3 /home/hex/Hex.py -p1 "agents.Group12.agent MCTSAgent" -p2 "agents.Group12.HexMastUltra2 HexMastUltra2" 2>&1)
+        RESULT=$(timeout 600 python3 Hex.py -p1 "agents.Group12.agent MCTSAgent" -p2 "agents.Group12.HexMastUltra2 HexMastUltra2" 2>&1)
     fi
 
     GAME_END=$(date +%s)
