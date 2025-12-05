@@ -1,1 +1,1 @@
-agents.GroupX.MCTSAgent MCTSAgent
+agents.Group12.HexMastUltra2 HexMastUltra2Agent
