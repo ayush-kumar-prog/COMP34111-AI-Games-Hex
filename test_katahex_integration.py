@@ -135,7 +135,7 @@ def main():
     # Check if KataHex files exist
     katahex_dir = os.path.join(os.path.dirname(__file__), "agents", "Group12", "katahex")
     binary_path = os.path.join(katahex_dir, "katahex")
-    model_path = os.path.join(katahex_dir, "hex27x3.bin.gz")
+    model_path = os.path.join(katahex_dir, "hex3_27x_b28.bin.gz")
     config_path = os.path.join(katahex_dir, "config.cfg")
 
     print("Pre-flight checks:")
