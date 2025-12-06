@@ -36,7 +36,7 @@ AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Paths to KataHex binary, model, and config
 KATAHEX_BINARY = os.path.join(AGENT_DIR, "katahex", "katahex")
-KATAHEX_MODEL = os.path.join(AGENT_DIR, "katahex", "hex3_27x_b28.bin.gz")
+KATAHEX_MODEL = os.path.join(AGENT_DIR, "katahex", "hex27x3.bin.gz")
 KATAHEX_CONFIG = os.path.join(AGENT_DIR, "katahex", "config.cfg")
 
 # Try to import AzaleaAgent for fallback
