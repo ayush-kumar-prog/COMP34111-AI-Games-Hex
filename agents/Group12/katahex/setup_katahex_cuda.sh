@@ -97,9 +97,9 @@ cd "$SCRIPT_DIR"
 echo ""
 echo "=== Step 3: Downloading pretrained model ==="
 
-MODEL_FILE="hex27x3.bin.gz"
-# URL redirects from KataGo to KataGomo_fork, but curl follows redirects
-MODEL_URL="https://github.com/hzyhhzy/KataGo/releases/download/Hex_20240812/hex27x3.bin.gz"
+MODEL_FILE="hex3_27x_b28.bin.gz"
+# 2025-01-31 release - current strongest net (258MB)
+MODEL_URL="https://github.com/hzyhhzy/KataGomo/releases/download/Hex_20250131/hex3_27x_b28.bin.gz"
 
 if [ ! -f "$MODEL_FILE" ]; then
     echo "Downloading model from: $MODEL_URL"
