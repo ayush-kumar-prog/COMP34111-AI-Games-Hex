@@ -1,0 +1,48 @@
+======================================================================
+V9 vs BASELINE: 30-GAME TOURNAMENT
+Testing: Swap table + Temperature + 1-ply tactical check
+======================================================================
+
+Game  1/30: V9(RED) vs Base... Baseline wins (1.7s) | V9: 0 Base: 1
+Game  2/30: V9(BLUE) vs Base... Baseline wins (1.2s) | V9: 0 Base: 2
+Game  3/30: V9(RED) vs Base... Baseline wins (1.9s) | V9: 0 Base: 3
+Game  4/30: V9(BLUE) vs Base... V9       wins (1.8s) | V9: 1 Base: 3
+Game  5/30: V9(RED) vs Base... Baseline wins (1.6s) | V9: 1 Base: 4
+Game  6/30: V9(BLUE) vs Base... Baseline wins (1.2s) | V9: 1 Base: 5
+Game  7/30: V9(RED) vs Base... V9       wins (2.1s) | V9: 2 Base: 5
+Game  8/30: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 3 Base: 5
+Game  9/30: V9(RED) vs Base... Baseline wins (1.1s) | V9: 3 Base: 6
+Game 10/30: V9(BLUE) vs Base... Baseline wins (1.6s) | V9: 3 Base: 7
+Game 11/30: V9(RED) vs Base... Baseline wins (1.1s) | V9: 3 Base: 8
+Game 12/30: V9(BLUE) vs Base... V9       wins (1.7s) | V9: 4 Base: 8
+Game 13/30: V9(RED) vs Base... V9       wins (1.9s) | V9: 5 Base: 8
+Game 14/30: V9(BLUE) vs Base... V9       wins (1.8s) | V9: 6 Base: 8
+Game 15/30: V9(RED) vs Base... V9       wins (1.9s) | V9: 7 Base: 8
+Game 16/30: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 8 Base: 8
+Game 17/30: V9(RED) vs Base... Baseline wins (1.1s) | V9: 8 Base: 9
+Game 18/30: V9(BLUE) vs Base... V9       wins (1.5s) | V9: 9 Base: 9
+Game 19/30: V9(RED) vs Base... Baseline wins (1.2s) | V9: 9 Base: 10
+Game 20/30: V9(BLUE) vs Base... V9       wins (1.8s) | V9: 10 Base: 10
+Game 21/30: V9(RED) vs Base... Baseline wins (1.1s) | V9: 10 Base: 11
+Game 22/30: V9(BLUE) vs Base... V9       wins (1.4s) | V9: 11 Base: 11
+Game 23/30: V9(RED) vs Base... Baseline wins (1.1s) | V9: 11 Base: 12
+Game 24/30: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 12 Base: 12
+Game 25/30: V9(RED) vs Base... Baseline wins (1.2s) | V9: 12 Base: 13
+Game 26/30: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 13 Base: 13
+Game 27/30: V9(RED) vs Base... Baseline wins (1.2s) | V9: 13 Base: 14
+Game 28/30: V9(BLUE) vs Base... V9       wins (1.8s) | V9: 14 Base: 14
+Game 29/30: V9(RED) vs Base... Baseline wins (1.4s) | V9: 14 Base: 15
+Game 30/30: V9(BLUE) vs Base... Baseline wins (2.2s) | V9: 14 Base: 16
+
+======================================================================
+FINAL RESULTS (30 GAMES)
+======================================================================
+V9:       14 wins (46.7%)
+Baseline: 16 wins (53.3%)
+
+BY COLOR:
+  V9 as RED:  3/15 (20.0%)
+  V9 as BLUE: 11/15 (73.3%)
+
+VERDICT: BASELINE SLIGHTLY BETTER
+======================================================================

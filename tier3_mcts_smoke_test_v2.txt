@@ -1,0 +1,35 @@
+======================================================================
+TIER 3 MCTS SMOKE TEST
+Testing MCTS agent vs baseline (single game)
+======================================================================
+
+Test 1: Loading MCTS agent...
+Warning: Could not load network: Error(s) in loading state_dict for HexNetwork:
+	Missing key(s) in state_dict: "encoder.weight", "conv1.weight", "bn1.weight", "bn1.bias", "bn1.running_mean", "bn1.running_var", "resblocks.0.conv1.weight", "resblocks.0.bn1.weight", "resblocks.0.bn1.bias", "resblocks.0.bn1.running_mean", "resblocks.0.bn1.running_var", "resblocks.0.conv2.weight", "resblocks.0.bn2.weight", "resblocks.0.bn2.bias", "resblocks.0.bn2.running_mean", "resblocks.0.bn2.running_var", "resblocks.1.conv1.weight", "resblocks.1.bn1.weight", "resblocks.1.bn1.bias", "resblocks.1.bn1.running_mean", "resblocks.1.bn1.running_var", "resblocks.1.conv2.weight", "resblocks.1.bn2.weight", "resblocks.1.bn2.bias", "resblocks.1.bn2.running_mean", "resblocks.1.bn2.running_var", "resblocks.2.conv1.weight", "resblocks.2.bn1.weight", "resblocks.2.bn1.bias", "resblocks.2.bn1.running_mean", "resblocks.2.bn1.running_var", "resblocks.2.conv2.weight", "resblocks.2.bn2.weight", "resblocks.2.bn2.bias", "resblocks.2.bn2.running_mean", "resblocks.2.bn2.running_var", "resblocks.3.conv1.weight", "resblocks.3.bn1.weight", "resblocks.3.bn1.bias", "resblocks.3.bn1.running_mean", "resblocks.3.bn1.running_var", "resblocks.3.conv2.weight", "resblocks.3.bn2.weight", "resblocks.3.bn2.bias", "resblocks.3.bn2.running_mean", "resblocks.3.bn2.running_var", "resblocks.4.conv1.weight", "resblocks.4.bn1.weight", "resblocks.4.bn1.bias", "resblocks.4.bn1.running_mean", "resblocks.4.bn1.running_var", "resblocks.4.conv2.weight", "resblocks.4.bn2.weight", "resblocks.4.bn2.bias", "resblocks.4.bn2.running_mean", "resblocks.4.bn2.running_var", "resblocks.5.conv1.weight", "resblocks.5.bn1.weight", "resblocks.5.bn1.bias", "resblocks.5.bn1.running_mean", "resblocks.5.bn1.running_var", "resblocks.5.conv2.weight", "resblocks.5.bn2.weight", "resblocks.5.bn2.bias", "resblocks.5.bn2.running_mean", "resblocks.5.bn2.running_var", "value_conv1.weight", "value_bn1.weight", "value_bn1.bias", "value_bn1.running_mean", "value_bn1.running_var", "value_fc2.weight", "value_fc2.bias", "value_fc3.weight", "value_fc3.bias", "move_conv1.weight", "move_bn1.weight", "move_bn1.bias", "move_bn1.running_mean", "move_bn1.running_var", "move_fc.weight", "move_fc.bias". 
+	Unexpected key(s) in state_dict: "policy", "optimizer". 
+Falling back to random play
+✓ MCTS agent loaded successfully
+  - Device: cpu
+  - MCTS iterations: 800
+  - C_PUCT: 1.25
+  - C_RAVE: 400
+
+Test 2: Running single game (MCTS vs Baseline)...
+This may take 30-60 seconds...
+
+✓ Game completed in 25.7s
+  Winner: Baseline (BLUE)
+
+MCTS search statistics:
+  MCTS: 1200 iterations in 1.38s, selected (0, 0)
+  MCTS: 1200 iterations in 1.31s, selected (0, 1)
+  MCTS: 1200 iterations in 1.21s, selected (0, 2)
+  MCTS: 1200 iterations in 1.19s, selected (0, 3)
+  MCTS: 1200 iterations in 1.31s, selected (0, 5)
+  ... and 16 more searches
+
+======================================================================
+SMOKE TEST PASSED
+======================================================================
+MCTS agent is functional. Ready for full tournament testing.
+

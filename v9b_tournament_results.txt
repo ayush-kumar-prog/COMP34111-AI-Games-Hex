@@ -1,0 +1,34 @@
+======================================================================
+V9b TOURNAMENT: Policy-Only Enhancements (NO TEMP) vs Baseline
+V9b vs AzaleaAgent Baseline (10 games)
+======================================================================
+
+V9b enhancements:
+  - Lookup table swap (replaces broken value-based)
+  - 1-ply tactical check (immediate win detection)
+  - NO temperature (pure argmax like baseline)
+
+Running 10 games with alternating colors...
+
+Game  1/10: V9b (RED) vs Baseline (BLUE)... Baseline wins (2.3s) | Score: V9b 0 - Base 1
+Game  2/10: Baseline (RED) vs V9b (BLUE)... V9b      wins (1.4s) | Score: V9b 1 - Base 1
+Game  3/10: V9b (RED) vs Baseline (BLUE)... Baseline wins (1.8s) | Score: V9b 1 - Base 2
+Game  4/10: Baseline (RED) vs V9b (BLUE)... V9b      wins (1.8s) | Score: V9b 2 - Base 2
+Game  5/10: V9b (RED) vs Baseline (BLUE)... Baseline wins (1.8s) | Score: V9b 2 - Base 3
+Game  6/10: Baseline (RED) vs V9b (BLUE)... V9b      wins (1.8s) | Score: V9b 3 - Base 3
+Game  7/10: V9b (RED) vs Baseline (BLUE)... Baseline wins (1.4s) | Score: V9b 3 - Base 4
+Game  8/10: Baseline (RED) vs V9b (BLUE)... V9b      wins (1.9s) | Score: V9b 4 - Base 4
+Game  9/10: V9b (RED) vs Baseline (BLUE)... Baseline wins (1.8s) | Score: V9b 4 - Base 5
+Game 10/10: Baseline (RED) vs V9b (BLUE)... Baseline wins (1.7s) | Score: V9b 4 - Base 6
+
+======================================================================
+RESULTS
+======================================================================
+V9b (No Temp): 4 wins
+Baseline:      6 wins
+
+Win rates: V9b 40.0% | Baseline 60.0%
+
+VERDICT: V9b REGRESSION - Enhancements made it worse
+======================================================================
+

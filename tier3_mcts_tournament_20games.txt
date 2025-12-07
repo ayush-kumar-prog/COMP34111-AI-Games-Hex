@@ -1,0 +1,48 @@
+======================================================================
+TIER 3 MCTS TOURNAMENT
+MCTS (Tier 1+2.1+2.2+3) vs Baseline AzaleaAgent
+======================================================================
+
+Running 20 games with alternating colors...
+
+Game  1/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (206.3s) | Score: MCTS 0 - Base 1
+Game  2/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (273.6s) | Score: MCTS 0 - Base 2
+Game  3/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (272.5s) | Score: MCTS 0 - Base 3
+Game  4/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (227.6s) | Score: MCTS 0 - Base 4
+Game  5/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (212.8s) | Score: MCTS 0 - Base 5
+Game  6/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (219.7s) | Score: MCTS 0 - Base 6
+Game  7/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (215.3s) | Score: MCTS 0 - Base 7
+Game  8/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (217.1s) | Score: MCTS 0 - Base 8
+Game  9/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (216.6s) | Score: MCTS 0 - Base 9
+Game 10/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (223.3s) | Score: MCTS 0 - Base 10
+Game 11/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (218.8s) | Score: MCTS 0 - Base 11
+Game 12/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (215.1s) | Score: MCTS 0 - Base 12
+Game 13/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (223.5s) | Score: MCTS 0 - Base 13
+Game 14/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (219.8s) | Score: MCTS 0 - Base 14
+Game 15/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (224.4s) | Score: MCTS 0 - Base 15
+Game 16/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (218.3s) | Score: MCTS 0 - Base 16
+Game 17/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (215.9s) | Score: MCTS 0 - Base 17
+Game 18/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (221.7s) | Score: MCTS 0 - Base 18
+Game 19/20: MCTS (RED) vs Baseline (BLUE)... Baseline wins (218.7s) | Score: MCTS 0 - Base 19
+Game 20/20: Baseline (RED) vs MCTS (BLUE)... Baseline wins (214.6s) | Score: MCTS 0 - Base 20
+
+======================================================================
+RESULTS
+======================================================================
+MCTS (Tier 3): 0 wins
+Baseline:      20 wins
+
+Win rates: MCTS 0.0% | Baseline 100.0%
+
+======================================================================
+TIER 3 MCTS COMPONENTS
+======================================================================
+- Neural policy priors for MCTS tree expansion
+- RAVE (Rapid Action Value Estimation)
+- PUCT selection formula
+- Dynamic iteration scaling (600-1200 iterations)
+- Integrated Tier 1 (GPU opts) + 2.1 (opening) + 2.2 (swap)
+
+Expected improvement: +300-500 Elo over baseline
+======================================================================
+

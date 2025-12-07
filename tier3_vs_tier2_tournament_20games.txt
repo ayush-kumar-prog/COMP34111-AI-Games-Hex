@@ -1,0 +1,54 @@
+======================================================================
+TIER 3 vs TIER 2.2 TOURNAMENT
+MCTS (Tier 1+2.1+2.2+3) vs Optimized Neural (Tier 1+2.1+2.2)
+======================================================================
+
+Running 20 games with alternating colors...
+
+Game  1/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (268.5s) | Score: T3 0 - T2 1
+Game  2/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (267.1s) | Score: T3 0 - T2 2
+Game  3/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (246.2s) | Score: T3 0 - T2 3
+Game  4/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (221.7s) | Score: T3 0 - T2 4
+Game  5/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (221.5s) | Score: T3 0 - T2 5
+Game  6/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (218.0s) | Score: T3 0 - T2 6
+Game  7/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (218.7s) | Score: T3 0 - T2 7
+Game  8/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (215.8s) | Score: T3 0 - T2 8
+Game  9/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (224.2s) | Score: T3 0 - T2 9
+Game 10/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (218.1s) | Score: T3 0 - T2 10
+Game 11/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (216.3s) | Score: T3 0 - T2 11
+Game 12/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (226.8s) | Score: T3 0 - T2 12
+Game 13/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (216.6s) | Score: T3 0 - T2 13
+Game 14/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (225.0s) | Score: T3 0 - T2 14
+Game 15/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (218.4s) | Score: T3 0 - T2 15
+Game 16/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (212.5s) | Score: T3 0 - T2 16
+Game 17/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (216.8s) | Score: T3 0 - T2 17
+Game 18/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (211.3s) | Score: T3 0 - T2 18
+Game 19/20: Tier3 (RED) vs Tier2 (BLUE)... Tier 2.2       wins (222.5s) | Score: T3 0 - T2 19
+Game 20/20: Tier2 (RED) vs Tier3 (BLUE)... Tier 2.2       wins (224.1s) | Score: T3 0 - T2 20
+
+======================================================================
+RESULTS
+======================================================================
+Tier 3 MCTS:   0 wins
+Tier 2.2:      20 wins
+
+Win rates: Tier 3 0.0% | Tier 2.2 100.0%
+
+======================================================================
+TIER COMPARISON
+======================================================================
+Tier 2.2 (Optimized Neural):
+  - Tier 1: GPU optimizations
+  - Tier 2.1: Opening book (weighted center)
+  - Tier 2.2: Neural-guided swap (FIXED)
+
+Tier 3 (Hybrid Neural-MCTS):
+  - All Tier 2.2 features PLUS:
+  - Neural policy priors for MCTS
+  - RAVE acceleration
+  - PUCT selection
+  - Dynamic iteration scaling
+
+Expected Tier 3 improvement over Tier 2.2: +300-500 Elo
+======================================================================
+

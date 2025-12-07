@@ -1,0 +1,7 @@
+======================================================================
+TIER 3 MCTS SMOKE TEST
+Testing MCTS agent vs baseline (single game)
+======================================================================
+
+Test 1: Loading MCTS agent...
+✗ Failed to load MCTS agent: No module named 'agents.Group12.train_azalea'

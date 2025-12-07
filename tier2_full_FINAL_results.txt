@@ -1,0 +1,26 @@
+======================================================================
+TIER 2 FULL COMPARISON TEST
+Baseline vs Optimized (All Tier 2 enhancements)
+======================================================================
+
+Running 20 games with alternating colors...
+
+Game  1/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.9s) | Score: Base 1 - Opt 0
+Game  2/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (2.7s) | Score: Base 2 - Opt 0
+Game  3/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.8s) | Score: Base 3 - Opt 0
+Game  4/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.6s) | Score: Base 4 - Opt 0
+Game  5/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.7s) | Score: Base 5 - Opt 0
+Game  6/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.9s) | Score: Base 6 - Opt 0
+Game  7/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.8s) | Score: Base 7 - Opt 0
+Game  8/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (2.7s) | Score: Base 8 - Opt 0
+Game  9/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.6s) | Score: Base 9 - Opt 0
+Game 10/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.9s) | Score: Base 10 - Opt 0
+Game 11/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.8s) | Score: Base 11 - Opt 0
+Game 12/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.9s) | Score: Base 12 - Opt 0
+Game 13/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.8s) | Score: Base 13 - Opt 0
+Game 14/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.5s) | Score: Base 14 - Opt 0
+Game 15/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.7s) | Score: Base 15 - Opt 0
+Game 16/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.6s) | Score: Base 16 - Opt 0
+Game 17/20: Baseline  (RED) vs Optimized (BLUE)... Baseline  wins (1.6s) | Score: Base 17 - Opt 0
+Game 18/20: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.9s) | Score: Base 18 - Opt 0
+Game 19/20: Baseline  (RED) vs Optimized (BLUE)... 

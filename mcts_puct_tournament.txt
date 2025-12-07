@@ -1,0 +1,19 @@
+======================================================================
+MCTS FIX VERIFICATION TOURNAMENT (PUCT FIXED)
+Fixed MCTS vs Baseline (10 games)
+======================================================================
+
+Running 10 games with alternating colors...
+
+Game  1/10: MCTS (RED) vs Baseline (BLUE)... Traceback (most recent call last):
+  File "/Users/kumar/Documents/University/Year3/AI_games/COMP34111-AI-Games-Hex/test_mcts_puct_fixed_tournament.py", line 103, in <module>
+    run_tournament(10)
+  File "/Users/kumar/Documents/University/Year3/AI_games/COMP34111-AI-Games-Hex/test_mcts_puct_fixed_tournament.py", line 69, in run_tournament
+    winner = play_game(mcts_agent, baseline_agent)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kumar/Documents/University/Year3/AI_games/COMP34111-AI-Games-Hex/test_mcts_puct_fixed_tournament.py", line 25, in play_game
+    while not board.has_ended():
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/kumar/Documents/University/Year3/AI_games/COMP34111-AI-Games-Hex/src/Board.py", line 76, in has_ended
+    raise ValueError("Invalid colour")
+ValueError: Invalid colour

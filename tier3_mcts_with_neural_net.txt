@@ -1,0 +1,24 @@
+======================================================================
+TIER 3 MCTS SMOKE TEST
+Testing MCTS agent vs baseline (single game)
+======================================================================
+
+Test 1: Loading MCTS agent...
+✓ MCTS agent loaded successfully
+  - Device: cpu
+  - MCTS iterations: 800
+  - C_PUCT: 1.25
+  - C_RAVE: 400
+
+Test 2: Running single game (MCTS vs Baseline)...
+This may take 30-60 seconds...
+
+✓ Game completed in 0.8s
+  Winner: Unknown
+
+
+======================================================================
+SMOKE TEST PASSED
+======================================================================
+MCTS agent is functional. Ready for full tournament testing.
+

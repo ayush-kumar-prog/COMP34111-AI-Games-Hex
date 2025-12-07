@@ -1,0 +1,120 @@
+======================================================================
+V9 vs BASELINE: 100-GAME TOURNAMENT
+Testing: Swap table + Temperature + 1-ply tactical check
+======================================================================
+
+Game   1/100: V9(RED) vs Base... Baseline wins (2.0s) | V9: 0 Base: 1
+Game   2/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 1 Base: 1
+Game   3/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 1 Base: 2
+Game   4/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 2 Base: 2
+Game   5/100: V9(RED) vs Base... Baseline wins (1.7s) | V9: 2 Base: 3
+Game   6/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 3 Base: 3
+Game   7/100: V9(RED) vs Base... Baseline wins (1.7s) | V9: 3 Base: 4
+Game   8/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 4 Base: 4
+Game   9/100: V9(RED) vs Base... V9       wins (1.7s) | V9: 5 Base: 4
+Game  10/100: V9(BLUE) vs Base... V9       wins (2.3s) | V9: 6 Base: 4
+Game  11/100: V9(RED) vs Base... Baseline wins (2.2s) | V9: 6 Base: 5
+Game  12/100: V9(BLUE) vs Base... V9       wins (2.6s) | V9: 7 Base: 5
+Game  13/100: V9(RED) vs Base... V9       wins (2.1s) | V9: 8 Base: 5
+Game  14/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 9 Base: 5
+Game  15/100: V9(RED) vs Base... V9       wins (1.7s) | V9: 10 Base: 5
+Game  16/100: V9(BLUE) vs Base... Baseline wins (2.6s) | V9: 10 Base: 6
+Game  17/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 10 Base: 7
+Game  18/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 11 Base: 7
+Game  19/100: V9(RED) vs Base... Baseline wins (1.7s) | V9: 11 Base: 8
+Game  20/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 12 Base: 8
+Game  21/100: V9(RED) vs Base... V9       wins (1.8s) | V9: 13 Base: 8
+Game  22/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 14 Base: 8
+Game  23/100: V9(RED) vs Base... Baseline wins (1.4s) | V9: 14 Base: 9
+Game  24/100: V9(BLUE) vs Base... Baseline wins (1.5s) | V9: 14 Base: 10
+Game  25/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 14 Base: 11
+Game  26/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 15 Base: 11
+Game  27/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 15 Base: 12
+Game  28/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 16 Base: 12
+Game  29/100: V9(RED) vs Base... Baseline wins (1.6s) | V9: 16 Base: 13
+Game  30/100: V9(BLUE) vs Base... V9       wins (2.5s) | V9: 17 Base: 13
+Game  31/100: V9(RED) vs Base... V9       wins (3.0s) | V9: 18 Base: 13
+Game  32/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 19 Base: 13
+Game  33/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 19 Base: 14
+Game  34/100: V9(BLUE) vs Base... Baseline wins (1.6s) | V9: 19 Base: 15
+Game  35/100: V9(RED) vs Base... Baseline wins (2.0s) | V9: 19 Base: 16
+Game  36/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 20 Base: 16
+Game  37/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 20 Base: 17
+Game  38/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 21 Base: 17
+Game  39/100: V9(RED) vs Base... Baseline wins (1.2s) | V9: 21 Base: 18
+Game  40/100: V9(BLUE) vs Base... Baseline wins (1.6s) | V9: 21 Base: 19
+Game  41/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 21 Base: 20
+Game  42/100: V9(BLUE) vs Base... Baseline wins (1.9s) | V9: 21 Base: 21
+Game  43/100: V9(RED) vs Base... Baseline wins (1.8s) | V9: 21 Base: 22
+Game  44/100: V9(BLUE) vs Base... Baseline wins (2.6s) | V9: 21 Base: 23
+Game  45/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 21 Base: 24
+Game  46/100: V9(BLUE) vs Base... V9       wins (1.3s) | V9: 22 Base: 24
+Game  47/100: V9(RED) vs Base... Baseline wins (2.4s) | V9: 22 Base: 25
+Game  48/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 23 Base: 25
+Game  49/100: V9(RED) vs Base... Baseline wins (1.9s) | V9: 23 Base: 26
+Game  50/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 24 Base: 26
+Game  51/100: V9(RED) vs Base... Baseline wins (2.2s) | V9: 24 Base: 27
+Game  52/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 25 Base: 27
+Game  53/100: V9(RED) vs Base... Baseline wins (1.4s) | V9: 25 Base: 28
+Game  54/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 26 Base: 28
+Game  55/100: V9(RED) vs Base... Baseline wins (1.4s) | V9: 26 Base: 29
+Game  56/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 27 Base: 29
+Game  57/100: V9(RED) vs Base... Baseline wins (1.2s) | V9: 27 Base: 30
+Game  58/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 28 Base: 30
+Game  59/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 28 Base: 31
+Game  60/100: V9(BLUE) vs Base... V9       wins (2.6s) | V9: 29 Base: 31
+Game  61/100: V9(RED) vs Base... Baseline wins (1.2s) | V9: 29 Base: 32
+Game  62/100: V9(BLUE) vs Base... V9       wins (1.7s) | V9: 30 Base: 32
+Game  63/100: V9(RED) vs Base... Baseline wins (1.8s) | V9: 30 Base: 33
+Game  64/100: V9(BLUE) vs Base... V9       wins (2.1s) | V9: 31 Base: 33
+Game  65/100: V9(RED) vs Base... Baseline wins (1.7s) | V9: 31 Base: 34
+Game  66/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 32 Base: 34
+Game  67/100: V9(RED) vs Base... Baseline wins (1.5s) | V9: 32 Base: 35
+Game  68/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 33 Base: 35
+Game  69/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 33 Base: 36
+Game  70/100: V9(BLUE) vs Base... Baseline wins (2.0s) | V9: 33 Base: 37
+Game  71/100: V9(RED) vs Base... Baseline wins (1.9s) | V9: 33 Base: 38
+Game  72/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 34 Base: 38
+Game  73/100: V9(RED) vs Base... Baseline wins (2.4s) | V9: 34 Base: 39
+Game  74/100: V9(BLUE) vs Base... Baseline wins (2.5s) | V9: 34 Base: 40
+Game  75/100: V9(RED) vs Base... Baseline wins (1.4s) | V9: 34 Base: 41
+Game  76/100: V9(BLUE) vs Base... Baseline wins (1.4s) | V9: 34 Base: 42
+Game  77/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 34 Base: 43
+Game  78/100: V9(BLUE) vs Base... Baseline wins (1.7s) | V9: 34 Base: 44
+Game  79/100: V9(RED) vs Base... Baseline wins (1.2s) | V9: 34 Base: 45
+Game  80/100: V9(BLUE) vs Base... V9       wins (2.3s) | V9: 35 Base: 45
+Game  81/100: V9(RED) vs Base... Baseline wins (2.3s) | V9: 35 Base: 46
+Game  82/100: V9(BLUE) vs Base... V9       wins (2.2s) | V9: 36 Base: 46
+Game  83/100: V9(RED) vs Base... Baseline wins (2.8s) | V9: 36 Base: 47
+Game  84/100: V9(BLUE) vs Base... Baseline wins (2.6s) | V9: 36 Base: 48
+Game  85/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 36 Base: 49
+Game  86/100: V9(BLUE) vs Base... Baseline wins (1.4s) | V9: 36 Base: 50
+Game  87/100: V9(RED) vs Base... Baseline wins (1.9s) | V9: 36 Base: 51
+Game  88/100: V9(BLUE) vs Base... V9       wins (2.2s) | V9: 37 Base: 51
+Game  89/100: V9(RED) vs Base... Baseline wins (1.2s) | V9: 37 Base: 52
+Game  90/100: V9(BLUE) vs Base... V9       wins (1.7s) | V9: 38 Base: 52
+Game  91/100: V9(RED) vs Base... Baseline wins (1.6s) | V9: 38 Base: 53
+Game  92/100: V9(BLUE) vs Base... V9       wins (2.0s) | V9: 39 Base: 53
+Game  93/100: V9(RED) vs Base... Baseline wins (1.6s) | V9: 39 Base: 54
+Game  94/100: V9(BLUE) vs Base... Baseline wins (2.0s) | V9: 39 Base: 55
+Game  95/100: V9(RED) vs Base... Baseline wins (1.7s) | V9: 39 Base: 56
+Game  96/100: V9(BLUE) vs Base... V9       wins (1.5s) | V9: 40 Base: 56
+Game  97/100: V9(RED) vs Base... Baseline wins (1.3s) | V9: 40 Base: 57
+Game  98/100: V9(BLUE) vs Base... V9       wins (2.4s) | V9: 41 Base: 57
+Game  99/100: V9(RED) vs Base... Baseline wins (1.9s) | V9: 41 Base: 58
+Game 100/100: V9(BLUE) vs Base... Baseline wins (2.1s) | V9: 41 Base: 59
+
+======================================================================
+FINAL RESULTS (100 GAMES)
+======================================================================
+V9:       41 wins (41.0%)
+Baseline: 59 wins (59.0%)
+
+BY COLOR:
+  V9 as RED:  5/50 (10.0%)
+  V9 as BLUE: 36/50 (72.0%)
+
+Difference: 18 games (HIGHLY SIGNIFICANT)
+
+VERDICT: BASELINE SIGNIFICANTLY BETTER
+======================================================================

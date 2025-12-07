@@ -1,0 +1,8 @@
+======================================================================
+MCTS FIX VERIFICATION TOURNAMENT
+Fixed MCTS vs Baseline (10 games)
+======================================================================
+
+Running 10 games with alternating colors...
+
+Game  1/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (225.5s) | Score: MCTS 0 - Base 1

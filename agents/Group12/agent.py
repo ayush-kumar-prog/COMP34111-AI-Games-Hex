@@ -25,7 +25,7 @@ class MCTSNode:
         moves = []
         for x in range(11):
             for y in range(11):
-                if self.board.tiles[x][y].colour == Colour.EMPTY:
+                if self.board.tiles[x][y].colour is None:
                     moves.append((x, y))
         random.shuffle(moves)  # Randomize to avoid bias
         return moves
@@ -77,7 +77,7 @@ class MCTSNode:
             legal_moves = []
             for x in range(11):
                 for y in range(11):
-                    if current_board.tiles[x][y].colour == Colour.EMPTY:
+                    if current_board.tiles[x][y].colour is None:
                         legal_moves.append((x, y))
             
             if not legal_moves:

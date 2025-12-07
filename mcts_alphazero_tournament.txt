@@ -1,0 +1,29 @@
+======================================================================
+MCTS FIX VERIFICATION TOURNAMENT (PUCT FIXED)
+Fixed MCTS vs Baseline (10 games)
+======================================================================
+
+Running 10 games with alternating colors...
+
+Game  1/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (192.0s) | Score: MCTS 0 - Base 1
+Game  2/10: Baseline (RED) vs MCTS (BLUE)... Baseline wins (788.6s) | Score: MCTS 0 - Base 2
+Game  3/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (196.0s) | Score: MCTS 0 - Base 3
+Game  4/10: Baseline (RED) vs MCTS (BLUE)... Baseline wins (199.7s) | Score: MCTS 0 - Base 4
+Game  5/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (189.7s) | Score: MCTS 0 - Base 5
+Game  6/10: Baseline (RED) vs MCTS (BLUE)... Baseline wins (186.4s) | Score: MCTS 0 - Base 6
+Game  7/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (190.0s) | Score: MCTS 0 - Base 7
+Game  8/10: Baseline (RED) vs MCTS (BLUE)... Baseline wins (182.4s) | Score: MCTS 0 - Base 8
+Game  9/10: MCTS (RED) vs Baseline (BLUE)... Baseline wins (189.0s) | Score: MCTS 0 - Base 9
+Game 10/10: Baseline (RED) vs MCTS (BLUE)... Baseline wins (186.3s) | Score: MCTS 0 - Base 10
+
+======================================================================
+RESULTS
+======================================================================
+MCTS (PUCT Fixed): 0 wins
+Baseline:          10 wins
+
+Win rates: MCTS 0.0% | Baseline 100.0%
+
+VERDICT: FIX INCOMPLETE - MCTS still underperforming
+======================================================================
+

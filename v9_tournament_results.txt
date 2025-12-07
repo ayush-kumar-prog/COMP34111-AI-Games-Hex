@@ -1,0 +1,34 @@
+======================================================================
+V9 TOURNAMENT: Policy-Only Enhancements vs Baseline
+V9 vs AzaleaAgent Baseline (10 games)
+======================================================================
+
+V9 enhancements:
+  - Lookup table swap (replaces broken value-based)
+  - Temperature scaling with adaptive annealing
+  - 1-ply tactical check (immediate win detection)
+
+Running 10 games with alternating colors...
+
+Game  1/10: V9 (RED) vs Baseline (BLUE)... Baseline wins (2.2s) | Score: V9 0 - Base 1
+Game  2/10: Baseline (RED) vs V9 (BLUE)... V9       wins (1.9s) | Score: V9 1 - Base 1
+Game  3/10: V9 (RED) vs Baseline (BLUE)... V9       wins (1.9s) | Score: V9 2 - Base 1
+Game  4/10: Baseline (RED) vs V9 (BLUE)... V9       wins (1.5s) | Score: V9 3 - Base 1
+Game  5/10: V9 (RED) vs Baseline (BLUE)... Baseline wins (1.1s) | Score: V9 3 - Base 2
+Game  6/10: Baseline (RED) vs V9 (BLUE)... V9       wins (1.4s) | Score: V9 4 - Base 2
+Game  7/10: V9 (RED) vs Baseline (BLUE)... Baseline wins (1.1s) | Score: V9 4 - Base 3
+Game  8/10: Baseline (RED) vs V9 (BLUE)... Baseline wins (1.2s) | Score: V9 4 - Base 4
+Game  9/10: V9 (RED) vs Baseline (BLUE)... Baseline wins (1.1s) | Score: V9 4 - Base 5
+Game 10/10: Baseline (RED) vs V9 (BLUE)... V9       wins (1.9s) | Score: V9 5 - Base 5
+
+======================================================================
+RESULTS
+======================================================================
+V9 (Policy-Only): 5 wins
+Baseline:         5 wins
+
+Win rates: V9 50.0% | Baseline 50.0%
+
+VERDICT: V9 NEUTRAL - No improvement over baseline
+======================================================================
+

@@ -1,0 +1,36 @@
+======================================================================
+TIER 2.2 ISOLATED TEST (Neural-Guided Swap)
+Baseline vs Optimized (Tier 1 + 2.1 + 2.2)
+Bridge detection DISABLED
+======================================================================
+
+Running 10 games with alternating colors...
+
+Game  1/10: Baseline  (RED) vs Optimized (BLUE)... Optimized wins (2.4s) | Score: Base 0 - Opt 1
+Game  2/10: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (2.2s) | Score: Base 1 - Opt 1
+Game  3/10: Baseline  (RED) vs Optimized (BLUE)... Optimized wins (2.1s) | Score: Base 1 - Opt 2
+Game  4/10: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (2.3s) | Score: Base 2 - Opt 2
+Game  5/10: Baseline  (RED) vs Optimized (BLUE)... Optimized wins (2.1s) | Score: Base 2 - Opt 3
+Game  6/10: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.9s) | Score: Base 3 - Opt 3
+Game  7/10: Baseline  (RED) vs Optimized (BLUE)... Optimized wins (2.0s) | Score: Base 3 - Opt 4
+Game  8/10: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (2.1s) | Score: Base 4 - Opt 4
+Game  9/10: Baseline  (RED) vs Optimized (BLUE)... Optimized wins (2.0s) | Score: Base 4 - Opt 5
+Game 10/10: Optimized (RED) vs Baseline  (BLUE)... Baseline  wins (1.7s) | Score: Base 5 - Opt 5
+
+======================================================================
+RESULTS
+======================================================================
+Baseline:   5 wins
+Optimized:  5 wins
+
+Win rates: Baseline 50.0% | Optimized 50.0%
+
+======================================================================
+TIER 2.2 NEURAL SWAP FIX
+======================================================================
+FIXED: Evaluate both swap options from same perspective (RED's view)
+  - Stay BLUE: NEGATE RED's value (opponent advantage)
+  - Swap to RED: Use RED's value directly (becomes ours)
+
+Expected: Competitive or better vs baseline (+50-80 Elo)
+======================================================================
