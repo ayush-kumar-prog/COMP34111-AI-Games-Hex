@@ -1,0 +1,80 @@
+======================================================================
+TOURNAMENT RESULTS: Azalea vs Test Agents
+Date: December 7, 2025
+======================================================================
+
+----------------------------------------------------------------------
+TOURNAMENT 1: AzaleaAgent vs CheatAgent (Group1)
+----------------------------------------------------------------------
+Total games: 20
+
+Game  1/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game  2/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  3/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game  4/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  5/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game  6/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  7/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game  8/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  9/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 10/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 11/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 12/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 13/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 14/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 15/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 16/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 17/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 18/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 19/20: Azalea (RED) vs CheatAgent (BLUE) -> Azalea wins
+Game 20/20: CheatAgent (RED) vs Azalea (BLUE) -> Azalea wins
+
+SUMMARY:
+  Azalea wins:     20/20 (100.0%)
+  CheatAgent wins:  0/20 (0.0%)
+
+Note: CheatAgent attempts illegal moves and gets disqualified.
+
+----------------------------------------------------------------------
+TOURNAMENT 2: AzaleaAgent vs CrashAgent (Group2)
+----------------------------------------------------------------------
+Total games: 20
+
+Game  1/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game  2/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  3/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game  4/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  5/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game  6/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  7/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game  8/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game  9/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 10/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 11/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 12/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 13/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 14/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 15/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 16/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 17/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 18/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+Game 19/20: Azalea (RED) vs CrashAgent (BLUE) -> Azalea wins
+Game 20/20: CrashAgent (RED) vs Azalea (BLUE) -> Azalea wins
+
+SUMMARY:
+  Azalea wins:     20/20 (100.0%)
+  CrashAgent wins:  0/20 (0.0%)
+
+Note: CrashAgent crashes during execution, forfeiting games.
+
+======================================================================
+OVERALL SUMMARY
+======================================================================
+Azalea vs CheatAgent (Group1): 20-0 (100%)
+Azalea vs CrashAgent (Group2): 20-0 (100%)
+
+Total: 40-0 (100%)
+
+These test agents are designed to test error handling, not provide
+competitive play. The perfect win rate is expected.
+======================================================================
